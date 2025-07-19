@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> removeSubfolders(vector<string>& f) {
+        stack<string> st;
+        sort(f.begin(), f.end());
+        st.push(f[0]);
+        int n = f.size();
+        vector<string> ans;
+        ans.push_back(f[0]);
+
+        for (int i = 1; i < n; i++) {
+            string s = st.top();
+            string ps = f[i];
+            if (ps.find(s + "/") != 0) {
+                ans.push_back(ps);
+                st.push(ps);
+            }
+        }
+
+        return ans;
+    }
+};
